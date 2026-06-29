@@ -9,6 +9,7 @@ Starten:
     python mqtt_dashboard.py
 """
 
+
 import json
 import asyncio
 import threading
