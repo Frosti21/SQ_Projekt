@@ -28,10 +28,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install build tools
+      - name: Install build tools and Mosquitto library
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake make g++
+          sudo apt-get install -y cmake make gcc libmosquitto-dev
 
       - name: Configure MQTT_Broker_Pi
         run: |
