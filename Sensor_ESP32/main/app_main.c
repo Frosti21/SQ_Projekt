@@ -115,7 +115,7 @@ static void sende_task(void *pvParameters) {
                 // esp_mqtt_client_publish(client, "esp32/Wohnzimmer/RH", payload, 0, 1, 0);
                 // ESP_LOGI(TAG, "Gesendet: Temp=%.1f RH=%.1f", data.temperature, data.humidity);
 
-                ESP_LOGI(TAG, "Gesendet: %s", &payload);
+                ESP_LOGI(TAG, "Gesendet: %s", payload);
             }
         }
     }
