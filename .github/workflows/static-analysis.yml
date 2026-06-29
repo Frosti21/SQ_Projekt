@@ -1,0 +1,48 @@
+name: Static Analysis
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  static-analysis-c:
+    name: Static Analysis C with cppcheck
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install cppcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cppcheck
+
+      - name: Run cppcheck
+        run: |
+          cppcheck --enable=all --inconclusive --std=c11 \
+            --suppress=missingIncludeSystem \
+            --error-exitcode=1 \
+            MQTT_Broker_Pi
+
+  static-analysis-python:
+    name: Static Analysis Python with Ruff
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ruff
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff
+
+      - name: Run ruff
+        run: |
+          ruff check NiceGui_PC

@@ -378,5 +378,9 @@ async def fetch_all_data():
 subs_btn.on("click", load_subscribers)
 data_btn.on("click", fetch_all_data)
 
+def main():
+    ui.run(title="MQTT Dashboard", dark=True, port=8080, reload=False, favicon="📡")
+
 # ─── Start ────────────────────────────────────────────────────────
-ui.run(title="MQTT Dashboard", dark=True, port=8080, reload=False, favicon="📡")
+if __name__ in {"__main__", "__mp_main__"}:
+    main()
