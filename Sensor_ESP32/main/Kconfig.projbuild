@@ -1,0 +1,37 @@
+menu "Example Configuration"
+    
+    config WIFI_SSID
+        string "WiFi SSID"
+        default "Markus-iPhone"
+        help
+            SSID des WiFi Netzwerks
+
+            
+    config EXAMPLE_WIFI_SSID
+        string "WiFi SSID"
+        default "Markus-iPhone"
+        help
+            SSID des WiFi Netzwerks
+
+    config WIFI_PASSWORD
+        string "WiFi Password"
+        default "markus12345"
+        help
+            Passwort des WiFi Netzwerks
+    config EXAMPLE_WIFI_PASSWORD
+        string "WiFi Password"
+        default "markus12345"
+        help
+            Passwort des WiFi Netzwerks
+
+    config BROKER_URL
+        string "Broker URL"
+        default "mqtt://172.20.10.5:1883"
+        help
+            URL of the broker to connect to
+
+    config BROKER_URL_FROM_STDIN
+        bool
+        default y if BROKER_URL = "FROM_STDIN"
+
+endmenu
