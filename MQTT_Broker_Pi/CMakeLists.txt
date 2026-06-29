@@ -11,5 +11,6 @@ add_executable(mqtt_broker
 
 target_link_libraries(mqtt_broker
     mosquitto
+    cjson
     pthread
 )
