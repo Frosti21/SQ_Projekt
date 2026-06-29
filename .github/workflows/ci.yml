@@ -80,7 +80,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest ruff
+          pip install ruff pytest
 
           if [ -f NiceGui_PC/requirements.txt ]; then
             pip install -r NiceGui_PC/requirements.txt

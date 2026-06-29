@@ -7,7 +7,7 @@ pi:
 	cmake --build build/MQTT_Broker_Pi
 
 pc:
-	python -m compileall NiceGui_PC
+	python3 -m py_compile NiceGui_PC/NiceGui.py
 
 esp32:
 	cd Sensor_ESP32 && idf.py build
