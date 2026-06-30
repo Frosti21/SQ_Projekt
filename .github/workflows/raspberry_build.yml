@@ -1,0 +1,38 @@
+name: Raspberry Pi Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-raspberry:
+    name: Build Raspberry Pi Project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            cmake \
+            make \
+            pkg-config \
+            libmosquitto-dev \
+            libcjson-dev \
+            libssl-dev
+
+      - name: Configure CMake
+        run: |
+          cmake -S MQTT_Broker_Pi -B build/MQTT_Broker_Pi
+
+      - name: Build
+        run: |
+          cmake --build build/MQTT_Broker_Pi --parallel
+
+      - name: Smoke test
+        run: |
+          test -f build/MQTT_Broker_Pi/mqtt_broker

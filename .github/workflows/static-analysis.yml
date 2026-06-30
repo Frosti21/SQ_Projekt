@@ -5,8 +5,8 @@ on:
   pull_request:
 
 jobs:
-  static-analysis-c:
-    name: Static Analysis C with cppcheck
+  cppcheck:
+    name: C Static Analysis
     runs-on: ubuntu-latest
 
     steps:
@@ -25,8 +25,8 @@ jobs:
             --error-exitcode=1 \
             MQTT_Broker_Pi
 
-  static-analysis-python:
-    name: Static Analysis Python with Ruff
+  ruff:
+    name: Python Static Analysis
     runs-on: ubuntu-latest
 
     steps:
