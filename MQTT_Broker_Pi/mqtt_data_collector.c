@@ -209,7 +209,7 @@ static void update_subscribers(const char *topic, const char *device_type) {
     cJSON *entry = NULL;
     cJSON_ArrayForEach(entry, arr) {
         cJSON *pJTopic = cJSON_GetObjectItem(entry, "topic");
-        if (pJTopic && strcmp(t->valuestring, topic) == 0) {
+        if (pJTopic && strcmp(pJTopic->valuestring, topic) == 0) {
             /* last_seen und count aktualisieren */
             cJSON_ReplaceItemInObject(entry, "last_seen",
                 cJSON_CreateString(timestamp));
@@ -241,7 +241,7 @@ static void update_subscribers(const char *topic, const char *device_type) {
     FILE *pFile = fopen(SUBSCRIBERS_FILE, "w");
     if (pFile) {
         char *out = cJSON_Print(root);
-        if (out) { fputs(out, f); free(out); }
+        if (out) { fputs(out, pFile); free(out); }
         fclose(pFile);
     }
     cJSON_Delete(root);
