@@ -178,8 +178,8 @@ static void update_subscribers(const char *topic, const char *device_type);
   */
  static void get_timestamp(char *buf, size_t len) {
      time_t now = time(NULL);
-     struct tm *t = localtime(&now);
-     strftime(buf, len, "%Y-%m-%dT%H:%M:%S", t);
+     struct tm *ptime = localtime(&now);
+     strftime(buf, len, "%Y-%m-%dT%H:%M:%S", ptime);
  }
  
 
@@ -208,8 +208,8 @@ static void update_subscribers(const char *topic, const char *device_type) {
     /* Topic suchen – falls vorhanden aktualisieren */
     cJSON *entry = NULL;
     cJSON_ArrayForEach(entry, arr) {
-        cJSON *t = cJSON_GetObjectItem(entry, "topic");
-        if (t && strcmp(t->valuestring, topic) == 0) {
+        cJSON *pJTopic = cJSON_GetObjectItem(entry, "topic");
+        if (pJTopic && strcmp(pJTopic->valuestring, topic) == 0) {
             /* last_seen und count aktualisieren */
             cJSON_ReplaceItemInObject(entry, "last_seen",
                 cJSON_CreateString(timestamp));
@@ -233,16 +233,16 @@ static void update_subscribers(const char *topic, const char *device_type) {
     }
 
     /* last_updated im Root setzen */
-    cJSON *lu = cJSON_GetObjectItem(root, "last_updated");
-    if (lu) cJSON_ReplaceItemInObject(root, "last_updated", cJSON_CreateString(timestamp));
+    cJSON *plast_update = cJSON_GetObjectItem(root, "last_updated");
+    if (plast_update) cJSON_ReplaceItemInObject(root, "last_updated", cJSON_CreateString(timestamp));
     else    cJSON_AddStringToObject(root, "last_updated", timestamp);
 
     /* Zurückschreiben */
-    FILE *f = fopen(SUBSCRIBERS_FILE, "w");
-    if (f) {
+    FILE *pFile = fopen(SUBSCRIBERS_FILE, "w");
+    if (pFile) {
         char *out = cJSON_Print(root);
-        if (out) { fputs(out, f); free(out); }
-        fclose(f);
+        if (out) { fputs(out, pFile); free(out); }
+        fclose(pFile);
     }
     cJSON_Delete(root);
     // pthread_mutex_unlock(&file_mutex);
@@ -275,19 +275,19 @@ static void update_subscribers(const char *topic, const char *device_type) {
   *           oder NULL bei Fehler.
   */
  static char *read_file(const char *path, long *out_size) {
-     FILE *f = fopen(path, "r");
-     if (!f) return NULL;
+     FILE *pFile = fopen(path, "r");
+     if (!pFile) return NULL;
  
-     fseek(f, 0, SEEK_END);
-     long size = ftell(f);
-     rewind(f);
+     fseek(pFile, 0, SEEK_END);
+     long size = ftell(pFile);
+     rewind(pFile);
  
      char *buf = malloc(size + 1);
-     if (!buf) { fclose(f); return NULL; }
+     if (!buf) { fclose(pFile); return NULL; }
  
-     fread(buf, 1, size, f);
+     fread(buf, 1, size, pFile);
      buf[size] = '\0';
-     fclose(f);
+     fclose(pFile);
  
      if (out_size) *out_size = size;
      return buf;
@@ -309,15 +309,15 @@ static void update_subscribers(const char *topic, const char *device_type) {
      get_timestamp(timestamp, sizeof(timestamp));
  
      /* Payload parsen */
-     cJSON *incoming = cJSON_ParseWithLength(payload, payloadlen);
-     if (!incoming) {
+     cJSON *pIncoming = cJSON_ParseWithLength(payload, payloadlen);
+     if (!pIncoming) {
          fprintf(stderr, "[WARN] Shelly JSON Parse-Fehler: Topic=%s\n", topic);
          return;
      }
  
      /* Zeitstempel hinzufügen */
-     cJSON_AddStringToObject(incoming, "timestamp", timestamp);
-     cJSON_AddStringToObject(incoming, "topic", topic);
+     cJSON_AddStringToObject(pIncoming, "timestamp", timestamp);
+     cJSON_AddStringToObject(pIncoming, "topic", topic);
  
      pthread_mutex_lock(&file_mutex);
  
@@ -337,7 +337,7 @@ static void update_subscribers(const char *topic, const char *device_type) {
  
      /* Neuen Eintrag in Array einfügen */
      cJSON *arr = cJSON_GetObjectItem(root, "data");
-     if (arr) cJSON_AddItemToArray(arr, incoming);
+     if (arr) cJSON_AddItemToArray(arr, pIncoming);
  
      /* Zurückschreiben */
      FILE *f = fopen(filepath, "w");

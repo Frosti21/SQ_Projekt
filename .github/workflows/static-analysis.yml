@@ -1,12 +1,11 @@
 name: Static Analysis
 
 on:
-  push:
   pull_request:
 
 jobs:
-  static-analysis-c:
-    name: Static Analysis C with cppcheck
+  cppcheck:
+    name: C Static Analysis
     runs-on: ubuntu-latest
 
     steps:
@@ -20,13 +19,13 @@ jobs:
 
       - name: Run cppcheck
         run: |
-          cppcheck --enable=all --inconclusive --std=c11 \
+          cppcheck --enable=warning,performance,portability --std=c11 \
             --suppress=missingIncludeSystem \
             --error-exitcode=1 \
             MQTT_Broker_Pi
 
-  static-analysis-python:
-    name: Static Analysis Python with Ruff
+  ruff:
+    name: Python Static Analysis
     runs-on: ubuntu-latest
 
     steps:

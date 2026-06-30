@@ -1,0 +1,21 @@
+name: ESP32 Build
+
+on:
+  pull_request:
+
+jobs:
+  build-esp32:
+    name: Build ESP32 Firmware
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build ESP32 Project
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: v5.3
+          target: esp32
+          path: Sensor_ESP32
+          
