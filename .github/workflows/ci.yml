@@ -44,9 +44,9 @@ jobs:
       - name: Static analysis with cppcheck
         run: |
           cppcheck --enable=warning,performance,portability --std=c11 \
-          --suppress=missingIncludeSystem \
-          --error-exitcode=1 \
-          MQTT_Broker_Pi
+            --suppress=missingIncludeSystem \
+            --error-exitcode=1 \
+            MQTT_Broker_Pi
 
       - name: Configure CMake
         run: |
