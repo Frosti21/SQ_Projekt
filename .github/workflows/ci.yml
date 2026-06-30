@@ -65,39 +65,35 @@ jobs:
           fi
 
   python-check:
-    name: Check and Test Python Project
-    runs-on: ubuntu-latest
+      name: Check and Test Python Project
+      runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+        - name: Setup Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: "3.11"
 
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install ruff pytest
+        - name: Install Python dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install ruff pytest
 
-          if [ -f NiceGui_PC/requirements.txt ]; then
-            pip install -r NiceGui_PC/requirements.txt
-          fi
+            if [ -f NiceGui_PC/requirements.txt ]; then
+              pip install -r NiceGui_PC/requirements.txt
+            fi
 
-      - name: Check Python syntax
-        run: |
-          python -m compileall NiceGui_PC
+        - name: Check Python syntax
+          run: |
+            python -m compileall NiceGui_PC
 
-      - name: Static analysis with ruff
-        run: |
-          ruff check NiceGui_PC
+        - name: Static analysis with ruff
+          run: |
+            ruff check NiceGui_PC
 
-      - name: Run Python tests
-        run: |
-          if [ -d NiceGui_PC/tests ]; then
-            python -m pytest NiceGui_PC/tests
-          else
-            echo "No Python tests found."
-          fi
+        - name: Run Python tests
+          run: |
+            PYTHONPATH=NiceGui_PC python -m pytest NiceGui_PC/tests
