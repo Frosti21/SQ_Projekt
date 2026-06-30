@@ -319,11 +319,11 @@ Statische Analyse: https://github.com/Frosti21/SQ_Projekt/actions/runs/284625179
 ## Fehlgeschlagener Pull Request
 
 Dieser Pull Request enthält absichtlich einen Fehler
-(z. B. einen fehlschlagenden Unit-Test).
 
 Link:
-
-> https://github.com/<USERNAME>/SQ_Projekt/pull/...
+ESP32-Build: https://github.com/Frosti21/SQ_Projekt/actions/runs/28465418380
+RasPi: https://github.com/Frosti21/SQ_Projekt/actions/runs/28465418407
+Statische Analyse: https://github.com/Frosti21/SQ_Projekt/actions/workflows/static-analysis.yml
 
 ---
 
