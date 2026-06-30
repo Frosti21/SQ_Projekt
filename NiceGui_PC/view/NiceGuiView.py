@@ -1,8 +1,5 @@
 import asyncio
 from nicegui import app, ui
-import asyncio
-from nicegui import ui
-
 
 class DashboardView:
     def __init__(self, receiver):
