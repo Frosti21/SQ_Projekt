@@ -6,7 +6,6 @@ from services.mqtt_service import MqttReceiver
 PI_IP = "172.20.10.5"
 MQTT_PORT = 1883
 
-
 def main():
     receiver = MqttReceiver(host=PI_IP, port=MQTT_PORT)
     view = DashboardView(receiver)
