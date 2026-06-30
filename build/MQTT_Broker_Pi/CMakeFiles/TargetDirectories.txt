@@ -1,0 +1,3 @@
+/Users/markusbockle/Programmieren/SoftwareQuali/build/MQTT_Broker_Pi/CMakeFiles/mqtt_broker.dir
+/Users/markusbockle/Programmieren/SoftwareQuali/build/MQTT_Broker_Pi/CMakeFiles/edit_cache.dir
+/Users/markusbockle/Programmieren/SoftwareQuali/build/MQTT_Broker_Pi/CMakeFiles/rebuild_cache.dir

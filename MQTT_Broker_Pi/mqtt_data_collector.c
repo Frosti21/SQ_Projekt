@@ -279,13 +279,13 @@ static void update_subscribers(const char *topic, const char *device_type) {
      if (!pFile) return NULL;
  
      fseek(pFile, 0, SEEK_END);
-     long size = ftell(f);
+     long size = ftell(pFile);
      rewind(pFile);
  
      char *buf = malloc(size + 1);
-     if (!buf) { fclose(f); return NULL; }
+     if (!buf) { fclose(pFile); return NULL; }
  
-     fread(buf, 1, size, f);
+     fread(buf, 1, size, pFile);
      buf[size] = '\0';
      fclose(pFile);
  
