@@ -310,16 +310,16 @@ GitHub Repository
 
 Link:
 
-> https://github.com/<USERNAME>/SQ_Projekt/pull/...
-
+ESP32-Build: https://github.com/Frosti21/SQ_Projekt/actions/runs/28462517805
+Pyton-Test: https://github.com/Frosti21/SQ_Projekt/actions/runs/28462517799
+RasPi: https://github.com/Frosti21/SQ_Projekt/actions/runs/28462517802
+Statische Analyse: https://github.com/Frosti21/SQ_Projekt/actions/runs/28462517949
 ---
 
 ## Fehlgeschlagener Pull Request
 
 Dieser Pull Request enthält absichtlich einen Fehler
 (z. B. einen fehlschlagenden Unit-Test).
-
-Nach einem Folge-Commit wurde der Fehler behoben und die CI lief erfolgreich durch.
 
 Link:
 

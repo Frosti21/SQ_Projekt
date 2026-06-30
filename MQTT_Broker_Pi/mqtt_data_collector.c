@@ -112,7 +112,7 @@ static void update_subscribers(const char *topic, const char *device_type);
  
  static void signal_handler(int sig);
 
-
+test 
 
  /* ─── Main ───────────────────────────────────────────────────────── */
  
