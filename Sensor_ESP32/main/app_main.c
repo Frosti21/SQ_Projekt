@@ -22,6 +22,7 @@
 #include "sdkconfig.h"
 
 #define SENSOR_ID 0
+Test2 
 
 static QueueHandle_t sensor_queue = NULL;
 typedef struct {
