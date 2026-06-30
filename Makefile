@@ -14,4 +14,5 @@ esp32:
 
 clean:
 	rm -rf build
+	rm -rf .pytest_cache
 	cd Sensor_ESP32 && idf.py fullclean
